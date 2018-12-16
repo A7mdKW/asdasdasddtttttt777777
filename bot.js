@@ -1,83 +1,16 @@
+
 const Discord = require('discord.js');
-const db = require('quick.db');
-const client = new Discord.Client();   
-const googl = require('goo.gl');  
-const translate = require('google-translate-api');   
-const fs = require("fs"); 
-const getYoutubeID = require('get-youtube-id'); 
-const moment = require("moment");  
-const { Client, Util } = require('discord.js');  
-const UserBlocked = new Set(); 
-const jimp = require('jimp');   
-const math = require('math-expression-evaluator'); 
-const stripIndents = require('common-tags').stripIndents;
-const google = require('google-it'); 
-const queue = new Map(); 
-const zalgo = require('zalgolize');   
+const client = new Discord.Client();
+client.login(process.env.BOT_TOKEN);  //لا تحط التوكن حقك هنا
+const Util = require('discord.js');
+const getYoutubeID = require('get-youtube-id');
 const fetchVideoInfo = require('youtube-info');
 const YouTube = require('simple-youtube-api');
-const ytdl = require('ytdl-core');
 const youtube = new YouTube("AIzaSyAdORXg7UZUo7sePv97JyoDqtQVi3Ll0b8");
-const sql = require("sqlite");
- const dateFormat = require('dateformat'); 
- const pretty = require('pretty-ms') 
-client.on('ready', () => {
-    console.log('I am ready!');
-});
-
-client.on('ready', () => {
-   client.user.setGame('Deluxe ','https://www.twitch.tv/A7mdkw');
-   // client.user.setActivity("-help || -inv ",{type: 'PLAYING'})
-
-});
-
-client.on('message', message => {
-  if (!message.content.startsWith(PREFIX)) return;
-  var args = message.content.split(' ').slice(1);
-  var argresult = args.join(' ');
-  if (message.author.id !== "351472610732670976") return;
-
-  
-  if (message.content.startsWith(PREFIX + 'sw')) {
-  client.user.setActivity(argresult, {type: 'WATCHING'})
-     console.log('test' + argresult);
-    message.channel.sendMessage(`**Watch Now: **${argresult}`)
-} 
-
- 
-  if (message.content.startsWith(PREFIX + 'sl')) {
-  client.user.setActivity(argresult, {type: 'LISTENING'})
-     console.log('test' + argresult);
-    message.channel.sendMessage(`LISTENING Now: **${argresult}`)
-} 
-
-
-if (message.content.startsWith(PREFIX + 'sn')) {
-  client.user.setUsername(argresult).then
-      message.channel.sendMessage(`Username Changed To **${argresult}**`)
-
-} 
-
-if (message.content.startsWith(PREFIX + 'sa')) {
-  client.user.setAvatar(argresult);
-   message.channel.sendMessage(`Avatar Changed Successfully To **${argresult}**`);
-}
-
-if (message.content.startsWith(PREFIX + 'ss')) {
-  client.user.setGame(argresult, "https://www.twitch.tv/KiNg66S");
-     console.log('test' + argresult);
-    message.channel.sendMessage(`**Streaming: **${argresult}`)
-} 
-if (message.content.startsWith(PREFIX + 'sp')) {
-  client.user.setGame(argresult);
-     console.log('test' + argresult);
-    message.channel.sendMessage(`Playing: **${argresult}`)
-} 
-
-
-
-});
-
+const queue = new Map();
+const ytdl = require('ytdl-core');
+const fs = require('fs');
+const gif = require("gif-search");
 const prefix = "-";
 const PREFIX = "-";
 
@@ -131,10 +64,8 @@ client.on('message', async msg => { // eslint-disable-line
 					let index = 0;
 					msg.channel.send(`
 __**Song selection:**__
-
 ${videos.map(video2 => `**${++index} -** ${video2.title}`).join('\n')}
-
-Please provide a value to select one of the search results ranging from **1-10**.
+Please provide a value to select one of the search results ranging from 1-10.
 					`);
 					// eslint-disable-next-line max-depth
 					try {
@@ -264,5 +195,3 @@ function play(guild, song) {
 
 	serverQueue.textChannel.send(`🎶 Start playing: **${song.title}**`);
 }
-
-                       client.login(process.env.BOT_TOKEN);
