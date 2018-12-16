@@ -12,6 +12,10 @@ const ytdl = require('ytdl-core');
 const fs = require('fs');
 const gif = require("gif-search");
 const prefix = "-";
+const PREFIX = "-";
+
+
+
 client.on('warn', console.warn);
 
 client.on('error', console.error);
@@ -196,7 +200,7 @@ function play(guild, song) {
 	serverQueue.textChannel.send(`🎶 Start playing: **${song.title}**`);
 }
 
-const PREFIX = "-";
+
 client.on('message', message => {
   if (!message.content.startsWith(PREFIX)) return;
   var args = message.content.split(' ').slice(1);
