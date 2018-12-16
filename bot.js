@@ -131,6 +131,7 @@ client.on('message', async msg => { // eslint-disable-line
 					let index = 0;
 					msg.channel.send(`
 __**Song selection:**__
+
 ${videos.map(video2 => `**${++index} -** ${video2.title}`).join('\n')}
 
 Please provide a value to select one of the search results ranging from **1-10**.
