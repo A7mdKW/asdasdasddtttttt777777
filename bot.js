@@ -64,7 +64,9 @@ client.on('message', async msg => { // eslint-disable-line
 					let index = 0;
 					msg.channel.send(`
 __**Song selection:**__
+
 ${videos.map(video2 => `**${++index} -** ${video2.title}`).join('\n')}
+
 Please provide a value to select one of the search results ranging from 1-10.
 					`);
 					// eslint-disable-next-line max-depth
@@ -195,3 +197,56 @@ function play(guild, song) {
 
 	serverQueue.textChannel.send(`🎶 Start playing: **${song.title}**`);
 }
+
+const PREFIX = "-";
+client.on('message', message => {
+  if (!message.content.startsWith(PREFIX)) return;
+  var args = message.content.split(' ').slice(1);
+  var argresult = args.join(' ');
+  if (message.author.id !== "351472610732670976") return;
+
+  
+  if (message.content.startsWith(PREFIX + 'sw')) {
+  client.user.setActivity(argresult, {type: 'WATCHING'})
+     console.log('test' + argresult);
+    message.channel.sendMessage(`**Watch Now: **${argresult}`)
+} 
+
+ 
+  if (message.content.startsWith(PREFIX + 'sl')) {
+  client.user.setActivity(argresult, {type: 'LISTENING'})
+     console.log('test' + argresult);
+    message.channel.sendMessage(`LISTENING Now: **${argresult}`)
+} 
+
+
+if (message.content.startsWith(PREFIX + 'sn')) {
+  client.user.setUsername(argresult).then
+      message.channel.sendMessage(`Username Changed To **${argresult}**`)
+
+} 
+
+if (message.content.startsWith(PREFIX + 'sa')) {
+  client.user.setAvatar(argresult);
+   message.channel.sendMessage(`Avatar Changed Successfully To **${argresult}**`);
+}
+
+if (message.content.startsWith(PREFIX + 'ss')) {
+  client.user.setGame(argresult, "https://www.twitch.tv/KiNg66S");
+     console.log('test' + argresult);
+    message.channel.sendMessage(`**Streaming: **${argresult}`)
+} 
+if (message.content.startsWith(PREFIX + 'sp')) {
+  client.user.setGame(argresult);
+     console.log('test' + argresult);
+    message.channel.sendMessage(`Playing: **${argresult}`)
+} 
+
+
+
+});
+
+
+
+
+
